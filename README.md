@@ -26,8 +26,8 @@ Before you begin, ensure you have the following installed:
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/chess-game.git
-cd chess-game
+git clone https://github.com/Sumant-Reddy/Chess-Game-Basic-.git
+cd Chess-Game-Basic
 ```
 
 2. Install dependencies:
