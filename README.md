@@ -114,6 +114,6 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## Contact
 
-Your Name - [@yourtwitter](https://twitter.com/yourtwitter) - email@example.com
+Your Name - [@linkedIn](https://www.linkedin.com/in/sumanthreddyvaddi/) - vaddisumanthreddy@gmail.com
 
-Project Link: [https://github.com/yourusername/chess-game](https://github.com/yourusername/chess-game) 
+Project Link: [https://github.com/Sumant-Reddy/Chess-Game-Basic-](https://github.com/Sumant-Reddy/Chess-Game-Basic-) 
