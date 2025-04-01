@@ -10,6 +10,11 @@ const initialState = {
     white: [],
     black: [],
   },
+  playerNames: {
+    player1: "",
+    player2: "",
+  },
+  gameStarted: false,
   moveHistory: [],
   isCheck: false,
   isCheckmate: false,
@@ -49,13 +54,16 @@ const gameSlice = createSlice({
         if (piece.type === "pawn" && validMove.isEnPassant) {
           const { capturedPawn } = validMove;
           newBoard[capturedPawn.row][capturedPawn.col] = null;
-          const player = piece.color === 'white' ? 'white' : 'black';
-          state.capturedPieces[player].push({ type: "pawn", color: piece.color === 'white' ? 'black' : 'white' });
+          // Store captured pawn in the capturing player's array
+          state.capturedPieces[piece.color].push({ 
+            type: "pawn", 
+            color: piece.color === 'white' ? 'black' : 'white' 
+          });
         }
         // Handle regular captures
         else if (capturedPiece) {
-          const player = piece.color === 'white' ? 'white' : 'black';
-          state.capturedPieces[player].push(capturedPiece);
+          // Store captured piece in the capturing player's array
+          state.capturedPieces[piece.color].push(capturedPiece);
         }
 
         // Handle pawn promotion
@@ -111,13 +119,16 @@ const gameSlice = createSlice({
       if (piece.type === "pawn" && action.payload.isEnPassant) {
         const { capturedPawn } = action.payload;
         newBoard[capturedPawn.row][capturedPawn.col] = null;
-        const player = piece.color === 'white' ? 'white' : 'black';
-        state.capturedPieces[player].push({ type: "pawn", color: piece.color === 'white' ? 'black' : 'white' });
+        // Store captured pawn in the capturing player's array
+        state.capturedPieces[piece.color].push({ 
+          type: "pawn", 
+          color: piece.color === 'white' ? 'black' : 'white' 
+        });
       }
       // Handle regular captures
       else if (capturedPiece) {
-        const player = piece.color === 'white' ? 'white' : 'black';
-        state.capturedPieces[player].push(capturedPiece);
+        // Store captured piece in the capturing player's array
+        state.capturedPieces[piece.color].push(capturedPiece);
       }
 
       // Handle pawn promotion
@@ -153,6 +164,11 @@ const gameSlice = createSlice({
       state.selectedPiece = null;
       state.validMoves = [];
       state.capturedPieces = { white: [], black: [] };
+      state.playerNames = {
+        player1: "",
+        player2: "",
+      };
+      state.gameStarted = false;
       state.moveHistory = [];
       state.isCheck = false;
       state.isCheckmate = false;
@@ -170,6 +186,10 @@ const gameSlice = createSlice({
         state.moveHistory[state.moveHistory.length - 1].isCheckmate = action.payload;
       }
     },
+    setPlayerNames: (state, action) => {
+      state.playerNames = action.payload;
+      state.gameStarted = true;
+    },
   },
 });
 
@@ -181,6 +201,7 @@ export const {
   resetGame,
   setCheck,
   setCheckmate,
+  setPlayerNames,
 } = gameSlice.actions;
 
 export default gameSlice.reducer; 
